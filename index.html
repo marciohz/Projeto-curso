@@ -1,12 +1,273 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>É isso ai</title>
-    <link rel="stylesheet" href="./stilo.css">
-</head>
-<body>
-    <div id="container"></div>
-</body>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevLinks</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --text-color: white;
+        --bg-url: url(./assets/pear-teto.jpg);
+        --stroke-color: rgba(255, 255, 255, 0.5);
+        --surface-color: rgba(255, 255, 255, 0.05);
+        --surface-color-hover: rgba(0, 0, 0, 0.02);
+        --highlight-color: rgba(255, 255, 255, 0.2);
+        --switch-bg-url: url(./assets/moon-stars.svg);
+      }
+
+      .light {
+        --text-color: black;
+        --bg-url: url(./assets/pear-miku.jpg);
+        --stroke-color: rgba(0, 0, 0, 0.5);
+        --surface-color: rgba(0, 0, 0, 0.05);
+        --surface-color-hover: rgba(0, 0, 0, 0.02);
+        --highlight-color: rgba(0, 0, 0, 0.1);
+        --switch-bg-url: url(./assets/sun.svg);
+      }
+
+      body {
+        /* 100% 100% estica a imagem para preencher a tela toda (de propósito) */
+        background: var(--bg-url) no-repeat center / 100% 100% fixed;
+        min-height: 100vh;
+      }
+
+      body * {
+        font-family: "Inter", sans-serif;
+        color: var(--text-color);
+      }
+
+      #container {
+        width: 100%;
+        max-width: 588px;
+        margin: 56px auto 0px;
+        padding: 0 24px;
+      }
+
+      /* profile */
+      #profile {
+        text-align: center;
+        padding: 24px;
+      }
+
+      #profile img {
+        width: 112px;
+      }
+
+      #profile p {
+        font-weight: 500;
+        line-height: 24px;
+        margin-top: 8px;
+      }
+
+      /* switch */
+      #switch {
+        position: relative;
+        width: 64px;
+        margin: 4px auto;
+      }
+
+      #switch button {
+        width: 32px;
+        height: 32px;
+        background: white var(--switch-bg-url) no-repeat center;
+        border: 0;
+        border-radius: 50%;
+
+        position: absolute;
+        top: 50%;
+        left: 0;
+        z-index: 1;
+        transform: translateY(-50%);
+
+        animation: slide-back 0.2s;
+      }
+
+      .light #switch button {
+        animation: slide-in 0.2s forwards;
+      }
+
+      #switch button:hover {
+        outline: 8px solid var(--highlight-color);
+      }
+
+      #switch span {
+        display: block;
+        width: 64px;
+        height: 24px;
+        background: var(--surface-color);
+        border: 1px solid var(--stroke-color);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border-radius: 9999px;
+      }
+
+      /* links */
+      ul {
+        list-style: none;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        padding: 24px 0;
+      }
+
+      ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 16px 24px;
+
+        background: var(--surface-color);
+        border: 1px solid var(--stroke-color);
+        border-radius: 8px;
+
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+
+        text-decoration: none;
+        font-weight: 500;
+
+        transition: background 0.2s;
+      }
+
+      ul li a:hover {
+        background: var(--surface-color-hover);
+        border: 1.5px solid var(--text-color);
+      }
+
+      /* social links */
+      #social-links {
+        display: flex;
+        justify-content: center;
+
+        padding: 24px 0;
+
+        font-size: 24px;
+      }
+
+      #social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+
+        transition: background 0.2s;
+        border-radius: 50%;
+      }
+
+      #social-links a:hover {
+        background: var(--highlight-color);
+      }
+
+      footer {
+        padding: 24px 0;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      /* animation */
+      @keyframes slide-in {
+        from {
+          left: 0;
+        }
+        to {
+          left: 50%;
+        }
+      }
+
+      @keyframes slide-back {
+        from {
+          left: 50%;
+        }
+        to {
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="profile">
+        <img src="./assets/angry-teto.jpg" alt="Foto de perfil" />
+        <p>@maykbrito</p>
+      </div>
+
+      <div id="switch" onclick="toggleMode()">
+        <button></button>
+        <span></span>
+      </div>
+
+      <ul>
+        <li>
+          <a>Link 1</a>
+        </li>
+
+        <li>
+          <a>Link 2</a>
+        </li>
+
+        <li>
+          <a>Link 3</a>
+        </li>
+
+        <li>
+          <a>Link 4</a>
+        </li>
+      </ul>
+      <div id="social-links">
+        <a href="https://github.com/marciohz" target="_blank">
+          <ion-icon name="logo-github"></ion-icon>
+        </a>
+      </div>
+
+      <footer>
+        Feito por marciohz com auxílio das aulas da Rocketseat
+      </footer>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script>
+      function toggleMode() {
+        const html = document.documentElement
+        html.classList.toggle("light")
+
+        // pegar a tag img
+        const img = document.querySelector("#profile img")
+
+        // substituir a imagem
+        if (html.classList.contains("light")) {
+          // modo claro: foto "images"
+          img.setAttribute("src", "./assets/images.jpg")
+        } else {
+          // modo escuro: foto "angry teto"
+          img.setAttribute("src", "./assets/angry-teto.jpg")
+        }
+      }
+    </script>
+  </body>
 </html>
